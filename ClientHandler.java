@@ -41,17 +41,27 @@ public class ClientHandler extends Thread{
 
         try {
             String message;
-            while (!(message = receiveMessage()).equals(exitMessage)) {
-                message = this.name + ": " + message;
-                System.out.println(message);
-                Server.broadcastAll(message, this);
+            while ((message = receiveMessage()) != null) {
+                if (message.equals(exitMessage)){
+                    break;
+                } else if (message.equals("")){
+
+                } else {
+                    message = this.name + ": " + message;
+                    System.out.println(message);
+                    Server.broadcastAll(message, this);
+                }
             }
+
+            System.out.println("server got quit");
             
         } catch (IOException e) {
             System.out.println("Error receving messages from " + this.id + ".");
         } finally {
             try {
                 this.socket.close();
+                Server.broadcastAll(this.name + " has quit :(", this);
+                System.out.println("Closed connection with " + this.id);
             } catch (IOException e) {
                 System.out.println("Could not close " + this.name + "connection!!!");
             }

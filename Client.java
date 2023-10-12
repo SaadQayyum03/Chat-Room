@@ -34,12 +34,13 @@ public class Client {
             System.out.print("Enter Username: ");
             String username = scanner.nextLine();
             client.sendMessage(username);
-            
+
             String message;
             while (true) {
                 System.out.print("Enter message: ");
                 message = scanner.nextLine();
                 if (message.equals("quit")) {
+                    client.sendMessage(message);
                     break;
                 }
                 // Print buffered messages
@@ -50,8 +51,13 @@ public class Client {
 
                 client.sendMessage(message);
             }
+            
         } catch (IOException e) {
             System.out.println("Could not connect to the server.");
+        } finally {
+            System.out.println("Closed connection to the server");
         }
+
+        System.out.println("out herere");
     }
 }
