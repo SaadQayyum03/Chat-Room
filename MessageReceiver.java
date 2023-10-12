@@ -20,7 +20,7 @@ public class MessageReceiver extends Thread {
                     if (bufferedMessages.size() == 10) {
                         bufferedMessages.removeFirst();
                     }
-                  bufferedMessages.add(receivedMessage);
+                    bufferedMessages.add(receivedMessage);
                 }
             }
         } catch (IOException e) {
