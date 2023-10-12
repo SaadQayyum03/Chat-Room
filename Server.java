@@ -5,7 +5,7 @@ import java.util.*;
 
 public class Server {
     private static int port = 12345;
-    private static Set<ClientHandler> clients = new HashSet<>();
+    protected static Set<ClientHandler> clients = new HashSet<>();
     private static int count = 0;
     public static void main(String[] args) {
         try {

@@ -55,6 +55,7 @@ public class ClientHandler extends Thread{
             } catch (IOException e) {
                 System.out.println("Could not close " + this.name + "connection!!!");
             }
+            Server.clients.remove(this);
         }
 
     }
